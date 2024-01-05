@@ -1,26 +1,12 @@
 from colorama import Fore, Back, Style
-"""
-Key: title
-Value: tuple with values as follows:
-    0 - Purchase Price
-    1 - Price Per House
-    2 - Rent
-    3 - Rent w 1 House
-    4 - Rent w 2 House
-    5 - Rent w 3 House
-    6 - Rent w 4 House
-    7 - Rent w Hotel
-    8 - Mortgage Value
-    9 - Color Code
-"""
 properties = {"Mediterranean Avenue":   (60, 50, 2, 10, 30, 90, 160, 250, 30, "\033[38;5;94m"),
               "Baltic Avenue":          (60, 50, 4, 20, 60, 180, 320, 450, 30, "\033[38;5;94m"),
-              "Oriental Avenue":        (100, 50, 6, 30, 90, 270, 400, 550, 50, "\033[1;34m"),
-              "Vermont Avenue":         (100, 50, 6, 30, 90, 270, 400, 550, 50, "\033[1;34m"),
-              "Conneticut Avenue":      (120, 50, 8, 40, 100, 300, 450, 600, 60, "\033[1;34m"),
-              "St. Charles Place":      (140, 100, 10, 50, 150, 450, 625, 750, 70, "\033[1;31m"),
-              "States Avenue":          (140, 100, 10, 50, 150, 450, 625, 750, 70, "\033[1;31m"),
-              "Virginia Avenue":        (160, 100, 12, 60, 180, 500, 700, 900, 80, "\033[1;31m"),
+              "Oriental Avenue":        (100, 50, 6, 30, 90, 270, 400, 550, 50, "\033[38;5;117m"),
+              "Vermont Avenue":         (100, 50, 6, 30, 90, 270, 400, 550, 50, "\033[38;5;117m"),
+              "Conneticut Avenue":      (120, 50, 8, 40, 100, 300, 450, 600, 60, "\033[38;5;117m"),
+              "St. Charles Place":      (140, 100, 10, 50, 150, 450, 625, 750, 70, "\033[38;5;162m"),
+              "States Avenue":          (140, 100, 10, 50, 150, 450, 625, 750, 70, "\033[38;5;162m"),
+              "Virginia Avenue":        (160, 100, 12, 60, 180, 500, 700, 900, 80, "\033[38;5;162m"),
               "St. James Place":        (180, 100, 14, 70, 200, 550, 750, 950, 90, "\033[38;5;202m"),
               "Tennessee Avenue":       (180, 100, 14, 70, 200, 550, 750, 950, 90, "\033[38;5;202m"),
               "New York Avenue":        (200, 100, 16, 80, 220, 600, 800, 1000, 100, "\033[38;5;202m"),
@@ -36,16 +22,73 @@ properties = {"Mediterranean Avenue":   (60, 50, 2, 10, 30, 90, 160, 250, 30, "\
               "Park Place":             (350, 200, 35, 175, 500, 1100, 1300, 1500, 175, Fore.BLUE),
               "Boardwalk":              (400, 200, 50, 200, 600, 1400, 1700, 2000, 200, Fore.BLUE)
             }
-special_properties = {
-              "Reading Railroad":       (200, 25, 50, 100, 200, 100, Fore.LIGHTBLACK_EX),
-              "Pennsylvania Railroad":  (200, 25, 50, 100, 200, 100, Fore.LIGHTBLACK_EX),
-              "B&O Railroad":           (200, 25, 50, 100, 200, 100, Fore.LIGHTBLACK_EX),
-              "Short Line":             (200, 25, 50, 100, 200, 100, Fore.LIGHTBLACK_EX),
-              "Electric Company":       (150, 4, 10, -1, -1, 75, Fore.YELLOW),
-              "Water Works":            (150, 4, 10, -1, -1,75, Fore.CYAN)
-              }
+"""
+@properties
+Key: title
+Value: tuple with values as follows:
+    0 - Purchase Price
+    1 - Price Per House
+    2 - Rent
+    3 - Rent w 1 House
+    4 - Rent w 2 House
+    5 - Rent w 3 House
+    6 - Rent w 4 House
+    7 - Rent w Hotel
+    8 - Mortgage Value
+    9 - Color Code
+"""
 
-# Maps to rename other game's locations to the standardized properties 
+RR_RENTS = [25, 50, 100, 150, 250, 450, 700, 1000, 1250, 1500, 1750, 2000]
+UT_RENTS = [4, 10, 25, 50, 100, 300]
+"""
+@RR_RENTS constant
+and 
+@UT_RENTS constant
+Constant values for railroad and utility rents according to Megalopoly ruleset.
+Adjust as needed.
+"""
+special_properties = {
+              "Reading Railroad":       (200, RR_RENTS[0], RR_RENTS[1], RR_RENTS[2], RR_RENTS[3], RR_RENTS[4], 
+                                         RR_RENTS[5], RR_RENTS[6], RR_RENTS[7], RR_RENTS[8], RR_RENTS[9], 
+                                          RR_RENTS[10], RR_RENTS[11], 100, Fore.LIGHTBLACK_EX),
+              "Pennsylvania Railroad":  (200, RR_RENTS[0], RR_RENTS[1], RR_RENTS[2], RR_RENTS[3], RR_RENTS[4], 
+                                         RR_RENTS[5], RR_RENTS[6], RR_RENTS[7], RR_RENTS[8], RR_RENTS[9], 
+                                          RR_RENTS[10], RR_RENTS[11], 100, Fore.LIGHTBLACK_EX),
+              "B&O Railroad":           (200, RR_RENTS[0], RR_RENTS[1], RR_RENTS[2], RR_RENTS[3], RR_RENTS[4], 
+                                         RR_RENTS[5], RR_RENTS[6], RR_RENTS[7], RR_RENTS[8], RR_RENTS[9], 
+                                          RR_RENTS[10], RR_RENTS[11], 100, Fore.LIGHTBLACK_EX),
+              "Short Line":             (200, RR_RENTS[0], RR_RENTS[1], RR_RENTS[2], RR_RENTS[3], RR_RENTS[4], 
+                                         RR_RENTS[5], RR_RENTS[6], RR_RENTS[7], RR_RENTS[8], RR_RENTS[9], 
+                                          RR_RENTS[10], RR_RENTS[11], 100, Fore.LIGHTBLACK_EX),
+              "Electric Company":       (150, UT_RENTS[0], UT_RENTS[1], UT_RENTS[2], UT_RENTS[3],
+                                          UT_RENTS[4], UT_RENTS[5], -1, -1, -1, -1, -1, -1, 75, Fore.YELLOW),
+              "Water Works":            (150, UT_RENTS[0], UT_RENTS[1], UT_RENTS[2], UT_RENTS[3],
+                                          UT_RENTS[4], UT_RENTS[5], -1, -1, -1, -1, -1, -1, 75, Fore.CYAN)
+              }
+"""
+@special_properties
+These properties do not follow the above rent pattern, 
+so they are given their own individual dictionary.
+Key: title
+Value: tuple with values as follows:
+    0 - Purchase Price
+    1 - Rent (or multiplier) with 1 location owned
+    2 - Rent (or multiplier) with 2 location owned
+    3 - Rent (or multiplier) with 3 location owned
+    4 - Rent (or multiplier) with 4 location owned
+    5 - Rent (or multiplier) with 5 location owned
+    6 - Rent (or multiplier) with 6 location owned
+    7 - Rent with 7 railroads owned
+    8 - Rent with 8 railroads owned
+    9 - Rent with 9 railroads owned
+    10 - Rent with 10 railroads owned
+    11 - Rent with 11 railroads owned
+    12 - Rent with 12 railroads owned
+    13 - Mortgage Value
+    14 - Color Code
+"""
+
+# Maps to rename other game's locations to the standardized Monopoly properties 
 target_properties = {  "Coffee": "Mediterranean Avenue",
                        "Honey": "Baltic Avenue",
                        "Shampoo": "Oriental Avenue",
@@ -102,78 +145,71 @@ special_starwars_properties = {
                        "Republic Medical Station": "Water Works"
                        }
 
+def print_deed(k: str, data: list) -> None:
+    if len(data)==10:
+        print(f"""{data[9]}
+        {ascii_art.get("title deed")}
+        {ascii_art.get("divider")}
+    === {k} ===
+    Purchase Price: {data[0]}
+    Price Per House: {data[1]}
+    Rent: {data[2]}
+    Rent w 1 house: {data[3]} 
+    Rent w 2 houses: {data[4]}
+    Rent w 3 houses: {data[5]}
+    Rent w 4 houses: {data[6]}
+    Rent w hotel: {data[7]}
+    Mortgage Value: {data[8]}
+        {ascii_art.get("divider")}
+        """)
+    else:
+        print(f"""{data[14]}
+        {ascii_art.get("title deed")}
+        {ascii_art.get("divider")}
+    === {k} ===
+    Purchase Price: {data[0]}
+    Rent (or multiplier) with 1 locations owned: {data[1]}
+    Rent (or multiplier) with 2 locations owned: {data[2]}
+    Rent (or multiplier) with 3 locations owned: {data[3]}
+    Rent (or multiplier) with 4 locations owned: {data[4]}
+    Rent (or multiplier) with 5 locations owned: {data[5]}
+    Rent (or multiplier) with 6 locations owned: {data[6]}
+    Rent with 7 railroads owned: {data[7]}
+    Rent with 8 railroads owned: {data[8]}
+    Rent with 9 railroads owned: {data[9]}
+    Rent with 10 railroads owned: {data[10]}
+    Rent with 11 railroads owned: {data[11]}
+    Rent with 12 railroads owned: {data[12]}
+    Mortgage Value: {data[13]}
+        {ascii_art.get("divider")}
+        """)
+
 def get_deed(title: str) -> None:
     exists = False
     for sw_key in starwars_properties:
         if sw_key.lower().startswith(title.lower()):
             data = properties.get(starwars_properties.get(sw_key))
-            print(f"""{data[9]}
-            {ascii_art.get("title deed")}
-            {ascii_art.get("divider")}
-        === {sw_key} ===
-        Purchase Price: {data[0]}
-        Price Per House: {data[1]}
-        Rent: {data[2]}
-        Rent w 1 house: {data[3]} 
-        Rent w 2 houses: {data[4]}
-        Rent w 3 houses: {data[5]}
-        Rent w 4 houses: {data[6]}
-        Rent w hotel: {data[7]}
-        Mortgage Value: {data[8]}
-        {ascii_art.get("divider")}
-        """)
+            print_deed(sw_key, data)
             exists = True
-            break
+            return
         else: 
             data = None
-    
-    print(Style.RESET_ALL, end="")
-    
+
     for t_key in target_properties:
         if t_key.lower().startswith(title.lower()):
             data = properties.get(target_properties.get(t_key))
-            print(f"""{data[9]}
-            {ascii_art.get("title deed")}
-            {ascii_art.get("divider")}
-        === {t_key} ===
-        Purchase Price: {data[0]}
-        Price Per House: {data[1]}
-        Rent: {data[2]}
-        Rent w 1 house: {data[3]} 
-        Rent w 2 houses: {data[4]}
-        Rent w 3 houses: {data[5]}
-        Rent w 4 houses: {data[6]}
-        Rent w hotel: {data[7]}
-        Mortgage Value: {data[8]}
-        {ascii_art.get("divider")}
-        """)
+            print_deed(t_key, data)
             exists = True
-            break
+            return
         else: 
             data = None
-    
-    print(Style.RESET_ALL, end="")
-    
+
     for key in properties:
         if key.lower().startswith(title.lower()):
             data = properties.get(key)
-            print(f"""{data[9]}
-            {ascii_art.get("title deed")}
-            {ascii_art.get("divider")}
-        === {key} ===
-        Purchase Price: {data[0]}
-        Price Per House: {data[1]}
-        Rent: {data[2]}
-        Rent w 1 house: {data[3]} 
-        Rent w 2 houses: {data[4]}
-        Rent w 3 houses: {data[5]}
-        Rent w 4 houses: {data[6]}
-        Rent w hotel: {data[7]}
-        Mortgage Value: {data[8]}
-        {ascii_art.get("divider")}
-        """)
+            print_deed(key, data)
             exists = True
-            break
+            return
         else: 
             data = None  
     
@@ -182,20 +218,9 @@ def get_deed(title: str) -> None:
     for sp_key in special_properties:
         if sp_key.lower().startswith(title.lower()):
             special_data = special_properties.get(sp_key)
-            print(f"""{special_data[6]}
-        {ascii_art.get("title deed")}
-        {ascii_art.get("divider")}
-        === {sp_key} ===
-        Purchase Price: {special_data[0]}
-        Rent (or multiplier) w 1 type: {special_data[1]} 
-        Rent (or multiplier) w 2 types: {special_data[2]}
-        Rent w 3 types: {special_data[3]}
-        Rent w 4 types: {special_data[4]}
-        Mortgage Value: {special_data[5]}
-        {ascii_art.get("divider")}
-        """)
+            print_deed(sp_key, special_data)
             exists = True
-            break
+            return
         else: 
             special_data = None
     
@@ -204,20 +229,9 @@ def get_deed(title: str) -> None:
     for sp_st_key in special_starwars_properties:
         if sp_st_key.lower().startswith(title.lower()):
             special_data = special_properties.get(special_starwars_properties.get(sp_st_key))
-            print(f"""{special_data[6]}
-        {ascii_art.get("title deed")}
-        {ascii_art.get("divider")}
-        === {sp_st_key} ===
-        Purchase Price: {special_data[0]}
-        Rent (or multiplier) w 1 type: {special_data[1]} 
-        Rent (or multiplier) w 2 types: {special_data[2]}
-        Rent w 3 types: {special_data[3]}
-        Rent w 4 types: {special_data[4]}
-        Mortgage Value: {special_data[5]}
-        {ascii_art.get("divider")}
-        """)
+            print_deed(sp_st_key, special_data)
             exists = True
-            break
+            return
         else: 
             special_data = None
     
@@ -232,9 +246,52 @@ def get_graphics() -> dict:
 
     return {"title": text[0],
             "divider": text[1],
-            "dollar": text[2],
+            "help": text[2],
             "title deed": text[3]}
 
+def print_properties():
+
+    property_tuples = []
+
+    property_tuples.append([Fore.LIGHTYELLOW_EX + "Standard Monopoly properties", 
+                            Fore.LIGHTYELLOW_EX + "Standard Star Wars Monopoly properties", 
+                            Fore.LIGHTYELLOW_EX + "Standard Target Monopoly properties"])
+    
+    special_property_tuples = []
+
+    for key in properties:
+        property_tuples.append([properties.get(key)[9] + key, "", ""])
+    for key in special_properties:
+        special_property_tuples.append([special_properties.get(key)[14] + key, ""])
+    
+    i = 1
+    for key in starwars_properties:
+        property_tuples[i][1] = properties.get(starwars_properties.get(key))[9] + key
+        i+=1
+    
+    i = 0
+    for key in special_starwars_properties:
+        special_property_tuples[i][1] = special_properties.get(special_starwars_properties.get(key))[14] + key
+        i+=1
+
+    i = 1
+    for key in target_properties:
+        property_tuples[i][2] = properties.get(target_properties.get(key))[9] + key
+        i+=1
+    
+
+    for tup in property_tuples:
+        for str_n in tup:
+            for i in range(41-len(str_n[str_n.find('m'):])):
+                str_n += '.'
+            print(str_n, end=' $$ ')
+        print()
+    for tup in special_property_tuples:
+        for str_n in tup:
+            for i in range(41-len(str_n[str_n.find('m'):])):
+                str_n += '.'
+            print(str_n, end=' $$ ')
+        print()
 
 
 def calculate(first_number, operator, second_number):
@@ -255,7 +312,7 @@ def calculate(first_number, operator, second_number):
         return first_number % second_number
     # Unknown
     else:
-        return 'Sorry, but I cannot understand your operation'
+        return 'Invalid operation!'
 
 
 if __name__ == "__main__":
@@ -267,21 +324,28 @@ if __name__ == "__main__":
     print(Style.RESET_ALL)
 
     # Main querying loop
-    stdIn = ""
     while True:
-        stdIn = input(Fore.GREEN + "\nQuery? " + Style.RESET_ALL).lower()
+        stdIn = input(Fore.WHITE + "\nQuery? " + Style.RESET_ALL).lower()
         if(stdIn != "" and not stdIn.isspace()):    
-            if(stdIn != "exit" and stdIn != "quit" and stdIn != "math"):
+            if(stdIn != "exit" and stdIn != "quit" and stdIn != "math" and stdIn != "help" and stdIn != "list"
+               and not stdIn.isdigit()):
                 get_deed(stdIn)
-            elif(stdIn == "math"):
+            elif(stdIn == "math" or stdIn.isdigit()):
                 print(Back.LIGHTGREEN_EX + Fore.BLACK)
                 try:
-                    print(calculate(int(input("Value 1: ")), input("Operation: "), int(input("Value 2: "))), end="")
+                    if(stdIn.isdigit()):
+                        print(calculate(int(stdIn), input("Operation: "), int(input("Value 2: "))), end="")
+                    else:
+                        print(calculate(int(input("Value 1: ")), input("Operation: "), int(input("Value 2: "))), end="")
                 except ZeroDivisionError:
                     print("Cannot divide by 0!")
                 except ValueError:
                     print("Invalid character.")
                 print(Style.RESET_ALL)
+            elif(stdIn == "help"):
+                print(Fore.LIGHTYELLOW_EX+ ascii_art.get('help'))
+            elif(stdIn == "list"):
+                print_properties()
             else:
                 print(Fore.LIGHTYELLOW_EX+ "Thanks for using the Megalopoly Assistant. Goodbye!"+ Style.RESET_ALL)
                 quit(0)

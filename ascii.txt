@@ -25,15 +25,27 @@ BREAK_TEXT
 |______|______|______|______|______|
 BREAK_TEXT                                                                                                                                                                                                        
    ___         
- _|\  \__      
-|\   ____\     
-\ \  \___|_    
- \ \_____  \   
-  \|____|\  \  
+ _|\  \__                                   === HELP ===
+|\   ____\      Welcome to the Megalopoly Assistant! This game is meant to be played with   
+\ \  \___|_     four Monopoly boards. This configuration assumes you are playing with    
+ \ \_____  \    a standard Monopoly, a millionaire Monopoly board, a Star Wars Monopoly,   
+  \|____|\  \   and a Target Monopoly board.   
     ____\_\  \ 
-   |\___    __\
-   \|___|\__\_|
-        \|__|  
+   |\___    __\ The purpose of this tool is to assist translating between boards, as the 
+   \|___|\__\_| value of each currency may be confusing. This tool allows you to input
+        \|__|   wholly or partially the property name, and a deed in standard Monopoly
+                style will be printed to the screen. 
+
+                A partial name would be like "bal" for "Baltic Avenue" or "JA" for ___ 
+                "Jabba's Palace."                                                _|\  \__
+                                                                                |\   ____\
+                Command List:                                                   \ \  \___|_  
+                <name> - attempt to access a Monopoly deed                       \ \_____  \ 
+                help - display this message                                       \|____|\  \
+                list - print a list of all property titles.                         ____\_\  \ 
+                math - calculator module for basic arithmetic                      |\___    __\
+                exit - close Megalopoly Assistant                                  \|___|\__\_|
+                quit - close Megalopoly Assistant                                       \|__|  
 BREAK_TEXT
 8888888b.                         888 
 888  "Y88b                        888 
